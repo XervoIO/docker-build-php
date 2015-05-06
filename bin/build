@@ -1,5 +1,11 @@
+#!/usr/bin/env bash
+set -e
+
 # Simply copy the input to the output.
 # INPUT_DIR and OUTPUT_DIR are set by the Modulus build system.
+if [[ ! -d $INPUT_DIR ]] || [[ ! -d $OUTPUT_DIR ]]; then
+  printf "Input/Output directories must exist.\n"
+  exit 1
+fi
 
-echo "Copying files to output directory."
-cp -R $INPUT_DIR/* $OUTPUT_DIR
+cp -R $INPUT_DIR/. $OUTPUT_DIR
